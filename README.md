@@ -48,9 +48,9 @@ I’m a **Python learner and aspiring Data Analyst**, passionate about building 
 ---
 
 ## 📬 Connect with Me
-- GitHub: [RaFaYtheCoder](https://github.com/RaFaYtheCoder)  
-- *(Add LinkedIn / Email if you’d like)*  
-
+-    GitHub:   [RaFaYtheCoder](https://github.com/RaFaYtheCoder)  
+-     Gmail:   rafaymansoor22@gmail.com
+- Instagram:   @rafay.op12   
 ---
 
 ⭐ Thanks for visiting my profile! If you like my work, don’t forget to **star my repos**!
