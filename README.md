@@ -28,8 +28,9 @@ I’m a **Python learner and aspiring Data Analyst**, passionate about building 
 ---
 
 ## 📊 Skills & Tools
-- **Languages**: Python, HTML, CSS  
-- **Libraries**: Pandas, Matplotlib, Seaborn, Tkinter, PyQt5  
+- **Languages**: Python, HTML, CSS, C++  
+- **Libraries**: Pandas, Matplotlib, Seaborn, Tkinter, OS , Shutil
+                 and many more to come ........ 
 - **Tools**: Git, GitHub, VS Code  
 
 ---
