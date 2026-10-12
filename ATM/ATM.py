@@ -10,7 +10,6 @@ def menu():
     print("4. To Exit ") 
     choice = input("Select from the following Numbers to Proceed (1-4) :")
     return choice
-
 #withdraw
 def withdraw():
     global bal
