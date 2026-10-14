@@ -1,7 +1,7 @@
 from Navigator_F1 import FinalCall
 import json,os,time
 
-directory = r"Data\Raw Data\filtered json\t2oi_filtered" 
+directory = r"Portfolio\Cricket Stat Engine\JSon Raw Data" 
 output    = FinalCall(3)
 FileName  = output ["filename"]
 

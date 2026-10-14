@@ -1,5 +1,5 @@
 import json,os
-directory = r"Data\Raw Data\filtered json\t2oi_filtered" 
+directory = r"Portfolio\Cricket Stat Engine\JSon Raw Data" 
 teams     = ["Bangladesh","New Zealand","India","England","Australia"
             ,"Pakistan","Sri Lanka","West Indies","South Africa"]
 
