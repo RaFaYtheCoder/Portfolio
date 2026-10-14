@@ -2,7 +2,7 @@ import csv
  
 def DictToCSV(data): 
  
-    with open(r"Data\CSV Files\Staduim Stats\stadium_stats.csv", "w", newline="", encoding="utf-8") as f: 
+    with open(r"Portfolio\Cricket Stat Engine\Processed Stat\Staduim Stats\stadium_stats.csv", "w", newline="", encoding="utf-8") as f: 
  
         writer = csv.writer(f) 
  

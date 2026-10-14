@@ -1,6 +1,6 @@
 import csv
 
-CSV_FILE = r"Data\CSV Files\Staduim Stats\stadium_stats.csv"
+CSV_FILE = r"Portfolio\Cricket Stat Engine\Processed Stat\Staduim Stats\stadium_stats.csv"
 
 WI_Islands = [
     "Antigua and Barbuda",

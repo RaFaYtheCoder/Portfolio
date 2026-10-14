@@ -1,7 +1,7 @@
 import pandas as pd
 import time,os
 
-directory   = r"Data\CSV Files\Staduim Stats\stadium_stats.csv"
+directory   = r"Portfolio\Cricket Stat Engine\Processed Stat\Staduim Stats\stadium_stats.csv"
 DataVenue   = pd.read_csv( directory , index_col="Venue" )
 data        = pd.read_csv( directory  )
 country     = []

@@ -1,7 +1,7 @@
 import time,os,json
 from csv_converter import DictToCSV
 
-directory       = r"Data\Raw Data\filtered json\t2oi_filtered" 
+directory       = r"Portfolio\Cricket Stat Engine\JSon Raw Dat" 
 Stadium_Stat    =  {}
 
 venue_alias = {
