@@ -52,7 +52,6 @@ def TeamFixture(matches,year):
 
 def TeamMatch(Filter_list):
     for i, match in enumerate(Filter_list):
-
         team1    = match["teams"][0]
         team2    = match["teams"][1]
         date     = match["date" ][0]
@@ -69,6 +68,7 @@ def TeamMatch(Filter_list):
 
 def FinalCall(num):
     Team      = TeamNames()
+    print("\nPlease wait, Data is loading...")
     Fixture   = TeamData(Team)
 
     if num == 1:

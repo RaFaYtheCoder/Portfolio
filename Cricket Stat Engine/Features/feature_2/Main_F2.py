@@ -16,9 +16,12 @@ def StatsGetter(Data):
     
     headings.remove("Country")    
     headings.remove("Role")
-
+    
+    print("To Filter the list of 800+ Players with your desired stats ...  \n Select from below stats")
+    print()
+    
     while MainLoop:
-
+    
         # Display all headings
         for index, stat in enumerate(headings, start=1):
             print(f"{index:<2}. {stat:<19}|", end="")
@@ -188,7 +191,7 @@ def ConditionMaker(Data,conditional_item):
     print(FinalOutput)
 
                                         
-def Feature2_Calling():
+def Feature2call():
     # --- Loading moved here from the top level ---
     try:
         master_data = pd.read_csv(master_file , index_col="Player")
@@ -215,4 +218,4 @@ def Feature2_Calling():
 # Runs only when this file is launched directly (python Main_F2.py),
 # NOT when the launcher imports it.
 if __name__ == "__main__":
-    Feature2_Calling()
+    Feature2call()

@@ -1,4 +1,4 @@
-from Navigator_F1 import FinalCall
+from .Navigator_F1 import FinalCall
 import json,os,time
 
 directory = r"Portfolio\Cricket Stat Engine\JSon Raw Data" 
@@ -276,24 +276,24 @@ def InningDislpay(Summary,inning_total,Batfirst,winner,result,toss,toss_sel,man_
 
   
  MatchInfo(1,winner,result,toss,toss_sel,man_of_match,series,match_num)
- input()
+ input("Press Enter to Continue ")
  print(f"|             Inning 1 -- {Inning1}                 ")
- input()
+ input("Press Enter to Continue ")
  ScorecardDisplay(Summary,BatCard1)
  print(f"|   TOTAL :-   {inning_total[0]["total"]}/{inning_total[0]["wickets"]}    | ")  
- input()
+ input("Press Enter to Continue ")
  print("|                  BOWLING                           ")
  ScorecardDisplay(Summary,BowlCard1)    
- input()
+ input("Press Enter to Continue ")
  
  print(f"|             Inning 2 -- {Inning2}                 ")
  
  ScorecardDisplay(Summary,BatCard2)    
  print(f"|   TOTAL :-   {inning_total[1]["total"]}/{inning_total[1]["wickets"]}    | ")  
- input()
+ input("Press Enter to Continue ")
  print("|                  BOWLING                           ")
  ScorecardDisplay(Summary,BowlCard2)    
- input()
+ input("Press Enter to Continue ")
  print()
  MatchInfo(2,winner,result,toss,toss_sel,man_of_match,series,match_num)
  

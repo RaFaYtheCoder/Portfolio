@@ -8,7 +8,7 @@ def DisplayStat(DataVenue,team):
     print(output)
 
 
-def Feature3_Calling():
+def Feature3call():
     # --- Loading moved here from the top level ---
     try:
         DataVenue   = pd.read_csv( directory , index_col="Venue" )
@@ -61,5 +61,5 @@ def Feature3_Calling():
 # Runs only when this file is launched directly (python Main_F3.py),
 # NOT when the launcher imports it.
 if __name__ == "__main__":
-    Feature3_Calling()
+    Feature3call()
     
