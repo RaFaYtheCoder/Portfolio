@@ -5,8 +5,7 @@ import os,time,operator
 # Runs  , Balls  , Outs , Batting Avg, 100s, 50s , Highest Score, Strike Rate,
 # Wickets, Economy, Bowling Avg, Runs Conceded, Balls Bowled, Rating
 
-dir = r"Portfolio\Cricket Stat Engine\Processed Stat\Player Stats\Master.csv"
-master_data = pd.read_csv(dir , index_col="Player")
+master_file = r"Portfolio\Cricket Stat Engine\Processed Stat\Player Stats\Master.csv"
 
 # -----------------| GET STATS |-----------------
 
@@ -101,7 +100,7 @@ def ConditionAssigner(Stats):
 
     print("Assign Conditions to the Selected Stats")
     print("-" * 50)
-    for count, stat in enumerate(Stats):
+    for count, stat in enumerate(Stats, start=1):
         # ----- Number -----
         while True:
             try:
@@ -114,11 +113,16 @@ def ConditionAssigner(Stats):
                 os.system("cls")
 
         # ----- Operator -----
-        for index,operator in enumerate(operators , start=1):
-                print(f"{index}. {operator}  | ",end="")
+        for index,op in enumerate(operators , start=1):
+                print(f"{index}. {op}  | ",end="")
         while True:
             try:
                 sel_symbol = int(input("Selection (Index): "))
+
+                # 0 or a negative number would silently pick from the end of the list
+                if sel_symbol < 1 or sel_symbol > len(operators):
+                    raise IndexError
+
                 symbol = operators[sel_symbol-1]
                 break
 
@@ -159,6 +163,10 @@ def ConditionMaker(Data,conditional_item):
         else:
             conditon = conditon & ops[symbol](Data[stat] , number )
 
+        # Players with no wickets have a Bowling Avg of inf - leave them out
+        if stat == "Bowling Avg":
+            conditon = conditon & (Data[stat] != float("inf"))
+
         if stat == "Matches":
             matches = True   
         
@@ -170,13 +178,41 @@ def ConditionMaker(Data,conditional_item):
     else:
         defualt_stat   =  ["Country" , "Role" , "Matches" , "Rating" ] 
     
-    FinalOutput = result[defualt_stat + condition_stat]
+    # Don't show a column twice (e.g. when Rating is also a condition)
+    extra_stat = []
+    for s in condition_stat:
+        if s not in defualt_stat:
+            extra_stat.append(s)
+
+    FinalOutput = result[defualt_stat + extra_stat]
     print(FinalOutput)
 
                                         
 def Feature2_Calling():
-    stats     = StatsGetter(master_data)
-    GivenData = ConditionAssigner(stats)
-    ConditionMaker(master_data,GivenData)
+    # --- Loading moved here from the top level ---
+    try:
+        master_data = pd.read_csv(master_file , index_col="Player")
 
-Feature2_Calling()
+    except FileNotFoundError:
+        print(f"Master CSV not found at: {master_file}")
+        return
+
+    except (ValueError, pd.errors.EmptyDataError):
+        print("Master CSV is empty or has no 'Player' column.")
+        return
+
+    try:
+        stats     = StatsGetter(master_data)
+        GivenData = ConditionAssigner(stats)
+        ConditionMaker(master_data,GivenData)
+
+    except KeyError as missing:
+        print(f"Column not found in the data: {missing}")
+
+    except ValueError:
+        print("Master CSV must contain 'Country' and 'Role' columns.")
+
+# Runs only when this file is launched directly (python Main_F2.py),
+# NOT when the launcher imports it.
+if __name__ == "__main__":
+    Feature2_Calling()

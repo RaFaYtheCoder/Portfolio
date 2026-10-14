@@ -2,28 +2,14 @@ from Navigator_F1 import FinalCall
 import json,os,time
 
 directory = r"Portfolio\Cricket Stat Engine\JSon Raw Data" 
-output    = FinalCall(3)
-FileName  = output ["filename"]
 
-def LoadingData():    
+def LoadingData(FileName):    
     with open(f"{directory}/{FileName}","r") as f:
                 data = json.load(f)
 
     return data
-                
-Match = LoadingData()
 
-# =========== MATCH-DATA ===========
-
-info   =  Match["info"]    # === MAIN-INFO (var)
-
-event        =  info .get("event", {})
-series       =  event.get("name" , "Unkown")
-match_num    =  event.get("match_number" , "Unkown")
-teams        = info["teams"]          
-innings      = Match["innings"]
-
-def MatchInfo(num):
+def MatchInfo(num,winner,result,toss,toss_sel,man_of_match,series,match_num):
     if  "runs"   in result:
         result_way = "RUNS"
         margin     = result["runs"]
@@ -66,7 +52,7 @@ def MatchExtras(batting_scoreboard,bowling_scoreboard,batter,bowler,balls,num):
         batting_scoreboard[batter]["balls"]   +=   1     
         bowling_scoreboard[bowler]["balls"]   +=   1     
 
-def MatchToss():
+def MatchToss(toss,toss_sel,teams):
     for team in teams:
         if team == toss and toss_sel == "bat":
             BatFirst = team
@@ -76,7 +62,7 @@ def MatchToss():
     
     return BatFirst
 
-def MatchInning():
+def MatchInning(innings):
     
     batting_scoreboard = {}
     bowling_scoreboard = {}
@@ -173,7 +159,7 @@ def EconomySrCalculate(Scoreboards):
             stat["economy"] = round(stat["runs"] / (stat["balls"] / 6), 2)
     return Scoreboards
 
-def ScoreCardSepration(Scorecards):
+def ScoreCardSepration(Scorecards,info,teams):
 
     squads = info["players"]
 
@@ -267,8 +253,8 @@ def ScorecardDisplay(ScoreCard, num):
                         f"{stat['economy']:<7} |"
                     )
               
-def InningDislpay(Summary,inning_total):
- if BatFirst == teams[0]:
+def InningDislpay(Summary,inning_total,Batfirst,winner,result,toss,toss_sel,man_of_match,teams,series,match_num):
+ if Batfirst == teams[0]:
     Inning1 = teams[0]
     Inning2 = teams[1]
 
@@ -289,7 +275,7 @@ def InningDislpay(Summary,inning_total):
     BowlCard2 = 4
 
   
- MatchInfo(1)
+ MatchInfo(1,winner,result,toss,toss_sel,man_of_match,series,match_num)
  input()
  print(f"|             Inning 1 -- {Inning1}                 ")
  input()
@@ -309,30 +295,47 @@ def InningDislpay(Summary,inning_total):
  ScorecardDisplay(Summary,BowlCard2)    
  input()
  print()
- MatchInfo(2)
+ MatchInfo(2,winner,result,toss,toss_sel,man_of_match,series,match_num)
  
 # ========   Final -- Calling   =============
+def Feature1call():
+    # --- Match selection + data loading (moved here from the top level) ---
+    output    = FinalCall(3)
+    FileName  = output ["filename"]
+    Match     = LoadingData(FileName)
 
-while True:    
-    outcome      = info["outcome"]  
-    if outcome.get("winner"):
-        winner       = outcome["winner"]
-        result       = outcome["by"]
-        toss         = info["toss"]["winner"]
-        toss_sel     = info["toss"]["decision"]
-        man_of_match = info["player_of_match"][0]
-    
-    elif outcome.get("result"):
-        if outcome['result'] == "no result":
-            print(f"Match Result: {outcome['result']} Due to dificult weather")
-            break
-             
-            
-    BatFirst   = MatchToss()
-    Scorecards = MatchInning()
-    EconomySrCalculate(Scorecards)
-    Summary    = ScoreCardSepration(Scorecards)
-    InningDislpay(Summary,Scorecards[2])
-    break
+    # =========== MATCH-DATA ===========
+    info         =  Match["info"]    # === MAIN-INFO (var)
 
+    event        =  info .get("event", {})
+    series       =  event.get("name" , "Unkown")
+    match_num    =  event.get("match_number" , "Unkown")
+    teams        = info["teams"]          
+    innings      = Match["innings"]
+
+    while True:    
+        outcome      = info["outcome"]  
+        if outcome.get("winner"):
+            winner       = outcome["winner"]
+            result       = outcome["by"]
+            toss         = info["toss"]["winner"]
+            toss_sel     = info["toss"]["decision"]
+            man_of_match = info["player_of_match"][0]
+        
+        elif outcome.get("result"):
+            if outcome['result'] == "no result":
+                print(f"Match Result: {outcome['result']} Due to dificult weather")
+                break
+                 
+        BatFirst   = MatchToss(toss,toss_sel,teams)        
+        Scorecards = MatchInning(innings)
+        EconomySrCalculate(Scorecards)
+        Summary    = ScoreCardSepration(Scorecards,info,teams)
+        InningDislpay(Summary,Scorecards[2],BatFirst,winner,result,toss,toss_sel,man_of_match,teams,series,match_num)
+        break
+
+# Runs only when this file is launched directly (python Main_F1.py),
+# NOT when the launcher imports it.
+if __name__ == "__main__":
+    Feature1call()
 
