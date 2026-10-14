@@ -1,16 +1,16 @@
 import json, os,csv
 
-directory = r"Data\Raw Data\filtered json\t2oi_filtered"
+directory = r"Portfolio\Cricket Stat Engine\JSon Raw Data"
 player_stat = {}
 country_files = {
-    "Pakistan"      : r"Data\CSV Files\Player Stats\Country Vise\PAK.csv",
-    "India"         : r"Data\CSV Files\Player Stats\Country Vise\IND.csv",
-    "England"       : r"Data\CSV Files\Player Stats\Country Vise\ENG.csv",
-    "Australia"     : r"Data\CSV Files\Player Stats\Country Vise\AUS.csv",
-    "South Africa"  : r"Data\CSV Files\Player Stats\Country Vise\SA.csv",
-    "New Zealand"   : r"Data\CSV Files\Player Stats\Country Vise\NZ.csv",
-    "Sri Lanka"     : r"Data\CSV Files\Player Stats\Country Vise\SRI.csv",
-    "Bangladesh"    : r"Data\CSV Files\Player Stats\Country Vise\BAN.csv"
+    "Pakistan"      : r"Portfolio\Cricket Stat Engine\Processed Stat\Player Stats\Country Vise\PAK.csv",
+    "India"         : r"Portfolio\Cricket Stat Engine\Processed Stat\Player Stats\Country Vise\IND.csv",
+    "England"       : r"Portfolio\Cricket Stat Engine\Processed Stat\Player Stats\Country Vise\ENG.csv",
+    "Australia"     : r"Portfolio\Cricket Stat Engine\Processed Stat\Player Stats\Country Vise\AUS.csv",
+    "South Africa"  : r"Portfolio\Cricket Stat Engine\Processed Stat\Player Stats\Country Vise\SA.csv",
+    "New Zealand"   : r"Portfolio\Cricket Stat Engine\Processed Stat\Player Stats\Country Vise\NZ.csv",
+    "Sri Lanka"     : r"Portfolio\Cricket Stat Engine\Processed Stat\Player Stats\Country Vise\SRI.csv",
+    "Bangladesh"    : r"Portfolio\Cricket Stat Engine\Processed Stat\Player Stats\Country Vise\BAN.csv"
 }
 # -----------------| HELPERS |-----------------
 

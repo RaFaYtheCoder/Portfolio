@@ -1,11 +1,10 @@
 import pandas as pd
 import os
 
-csv_dir = r"Data\CSV Files\Player Stats\Country Vise"
-output_file = r"Data\CSV Files\Player Stats\Master.csv"
+csv_dir = r"Portfolio\Cricket Stat Engine\Processed Stat\Player Stats\Country Vise"
+output_file = r"Portfolio\Cricket Stat Engine\Processed Stat\Player Stats\Master.csv"
 
 def CreateMasterCSV(csv_dir, output_file):
-
     country_map = {
         "PAK": "Pakistan",
         "IND": "India",

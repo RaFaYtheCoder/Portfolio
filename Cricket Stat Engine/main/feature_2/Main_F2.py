@@ -5,7 +5,7 @@ import os,time,operator
 # Runs  , Balls  , Outs , Batting Avg, 100s, 50s , Highest Score, Strike Rate,
 # Wickets, Economy, Bowling Avg, Runs Conceded, Balls Bowled, Rating
 
-dir = r"Data\CSV Files\Player Stats\Master.csv"
+dir = r"Portfolio\Cricket Stat Engine\Processed Stat\Player Stats\Master.csv"
 master_data = pd.read_csv(dir , index_col="Player")
 
 # -----------------| GET STATS |-----------------
